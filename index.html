@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family Feud Game</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Team Naming Modal -->
+    <div id="teamNamingModal" class="modal">
+        <div class="modal-content">
+            <h2>Enter Team Names</h2>
+            <div class="team-inputs">
+                <div class="input-group">
+                    <label for="team1Name">Team 1 Name:</label>
+                    <input type="text" id="team1Name" placeholder="Enter Team 1 Name" value="TEAM A">
+                </div>
+                <div class="input-group">
+                    <label for="team2Name">Team 2 Name:</label>
+                    <input type="text" id="team2Name" placeholder="Enter Team 2 Name" value="TEAM B">
+                </div>
+                <button id="startGameBtn">Start Game</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="game-container" style="display: none;">
+        <header class="header">
+            <h1>FAMILY FEUD</h1>
+            <div class="scores">
+                <div class="team" id="team1">
+                    <h3>TEAM A</h3>
+                    <div class="score">0</div>
+                    <div class="strikes" id="team1Strikes">⚪⚪⚪</div>
+                </div>
+                <div class="question-container">
+                    <div id="questionNumber" class="question-number">Question 1 / 15</div>
+                    <p id="question">Name something people do before bed</p>
+                    <div id="turnIndicator" class="turn-indicator">TEAM A turn</div>
+                </div>
+                <div class="team" id="team2">
+                    <h3>TEAM B</h3>
+                    <div class="score">0</div>
+                    <div class="strikes" id="team2Strikes">⚪⚪⚪</div>
+                </div>
+            </div>
+        </header>
+
+        <div class="board">
+            <div class="answers">
+                <!-- Answers will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <div class="controls">
+            <div class="input-group">
+                <input type="text" id="answerInput" placeholder="Type an answer..." autofocus>
+                <button id="submitBtn">Submit Answer</button>
+            </div>
+            <div class="action-buttons">
+                <button id="team1Btn" class="team-btn">Team A +</button>
+                <button id="team2Btn" class="team-btn">Team B +</button>
+                <button id="revealBtn">Reveal Answer</button>
+                <button id="nextBtn">Next Question</button>
+                <button id="settingsToggle" class="settings-btn">Settings</button>
+            </div>
+        </div>
+
+        <div id="feedback" class="feedback"></div>
+    </div>
+
+    <!-- Settings Side Panel -->
+    <div id="settingsPanel" class="settings-panel">
+        <div class="settings-header">
+            <h3>Settings</h3>
+            <button id="settingsClose" class="settings-close" aria-label="Close Settings">×</button>
+        </div>
+        <div class="settings-content">
+            <div class="settings-section">
+                <label for="maxStrikesInput">Max strikes per team (per question)</label>
+                <input type="number" id="maxStrikesInput" min="1" max="9" value="3">
+            </div>
+            <div class="settings-section">
+                <button id="resetStrikesBtn">Reset strikes for both teams</button>
+            </div>
+            <div class="settings-section">
+                <h4>Strikes (this question)</h4>
+                <div class="points-row">
+                    <div class="points-label" id="team1StrikeLabel">Team 1</div>
+                    <div class="strike-controls">
+                        <button id="team1SettingsStrikeMinus" class="strike-btn" title="Decrease strikes">−</button>
+                        <span id="team1StrikeValue" class="points-label">0</span>
+                        <button id="team1SettingsStrikePlus" class="strike-btn" title="Increase strikes">+</button>
+                    </div>
+                </div>
+                <div class="points-row">
+                    <div class="points-label" id="team2StrikeLabel">Team 2</div>
+                    <div class="strike-controls">
+                        <button id="team2SettingsStrikeMinus" class="strike-btn" title="Decrease strikes">−</button>
+                        <span id="team2StrikeValue" class="points-label">0</span>
+                        <button id="team2SettingsStrikePlus" class="strike-btn" title="Increase strikes">+</button>
+                    </div>
+                </div>
+            </div>
+            <div class="settings-section">
+                <h4>Current Question Points</h4>
+                <div id="pointsEditor" class="points-editor"></div>
+            </div>
+        </div>
+    </div>
+
+    <audio id="correctSound" src="https://www.soundjay.com/human/sounds/applause-8.mp3"></audio>
+    <audio id="wrongSound" src="https://www.soundjay.com/human/sounds/boo-1.mp3"></audio>
+    
+    <script src="script.js"></script>
+</body>
+</html>
